@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name', 255)->unique()->index();
             $table->unsignedInteger('quality');
             $table->integer('sell_in');
-            $table->text('image_url');
+            $table->text('image_url')->nullable();
             $table->timestamps();
         });
     }

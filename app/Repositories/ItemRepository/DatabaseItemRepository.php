@@ -22,7 +22,7 @@ class DatabaseItemRepository implements ItemRepositoryInterface
         return array_map(function($item){
             $itemData = [
                 'name' => $item->name,
-                'sell_in' => $item->sell_in,
+                'sell_in' => $item->sellIn,
                 'quality' => $item->quality,
             ];
 
