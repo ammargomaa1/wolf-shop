@@ -1,0 +1,51 @@
+{
+	"info": {
+		"_postman_id": "89acf86d-45b5-4567-9205-4ed4a3324f82",
+		"name": "Wolf Shop",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "36786905"
+	},
+	"item": [
+		{
+			"name": "Upload Item Image",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "postman-cloud:///1efa9d8c-f07c-4e00-80c7-08085cd0600a"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:8000/api/5",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"5"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "localhost:8000"
+		}
+	]
+}
