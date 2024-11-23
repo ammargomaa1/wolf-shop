@@ -9,9 +9,7 @@ class XiaomiRedmiNote13Strategy implements UpdateItemStrategyContract
 {
     public static function update(Item &$item): void
     {
-        $item->sellIn = 9;
-        if ($item->quality != 0) {
-            $item->quality = 48;
-        }
+        $item->sellIn--;
+        $item->quality = max(0, $item->quality - 2);
     }
 }
