@@ -17,6 +17,7 @@ class WolfServiceTest extends TestCase
         $service->updateQuality();
         $serviceItems = $service->getItems();
         $this->assertEquals(4, $serviceItems[0]->quality);
+        $this->assertEquals(9, $serviceItems[0]->sellIn);
     }
 
     public function test_item_sell_in_degrades_each_day(): void
@@ -39,6 +40,7 @@ class WolfServiceTest extends TestCase
         $service->updateQuality();
         $serviceItems = $service->getItems();
         $this->assertEquals(4, $serviceItems[0]->quality);
+        $this->assertEquals(-1, $serviceItems[0]->sellIn);
     }
 
     public function test_item_quality_is_never_negative(): void
@@ -50,6 +52,7 @@ class WolfServiceTest extends TestCase
         $service->updateQuality();
         $serviceItems = $service->getItems();
         $this->assertEquals(0, $serviceItems[0]->quality);
+        $this->assertEquals(-1, $serviceItems[0]->sellIn);
     }
 
     public function test_item_quality_is_never_negative_after_sell_in_and_quality_is_zero(): void
@@ -61,6 +64,7 @@ class WolfServiceTest extends TestCase
         $service->updateQuality();
         $serviceItems = $service->getItems();
         $this->assertEquals(0, $serviceItems[0]->quality);
+        $this->assertEquals(-2, $serviceItems[0]->sellIn);
     }
 
     public function test_apple_air_pods_increases_the_older_it_gets(): void
@@ -72,6 +76,7 @@ class WolfServiceTest extends TestCase
         $service->updateQuality();
         $serviceItems = $service->getItems();
         $this->assertEquals(6, $serviceItems[0]->quality);
+        $this->assertEquals(9, $serviceItems[0]->sellIn);
     }
 
     public function test_apple_air_pods_increases_the_older_it_gets_but_never_more_than_50(): void
@@ -83,6 +88,7 @@ class WolfServiceTest extends TestCase
         $service->updateQuality();
         $serviceItems = $service->getItems();
         $this->assertEquals(50, $serviceItems[0]->quality);
+        $this->assertEquals(9, $serviceItems[0]->sellIn);
     }
 
     public function test_samsung_galaxy_s23_never_decrease_in_quality(): void
@@ -127,6 +133,7 @@ class WolfServiceTest extends TestCase
         $service->updateQuality();
         $serviceItems = $service->getItems();
         $this->assertEquals(7, $serviceItems[0]->quality);
+        $this->assertEquals(9, $serviceItems[0]->sellIn);
     }
 
     public function test_apple_ipad_air_increases_in_quality_by_3_if_there_are_5_days_or_less(): void
@@ -138,6 +145,7 @@ class WolfServiceTest extends TestCase
         $service->updateQuality();
         $serviceItems = $service->getItems();
         $this->assertEquals(9, $serviceItems[0]->quality);
+        $this->assertEquals(4, $serviceItems[0]->sellIn);
     }
 
     public function test_apple_ipad_air_never_increases_more_than_50(): void
@@ -149,6 +157,7 @@ class WolfServiceTest extends TestCase
         $service->updateQuality();
         $serviceItems = $service->getItems();
         $this->assertEquals(50, $serviceItems[0]->quality);
+        $this->assertEquals(4, $serviceItems[0]->sellIn);
     }
 
     public function test_apple_ipad_air_drops_to_zero_quality_after_concert(): void
@@ -160,5 +169,6 @@ class WolfServiceTest extends TestCase
         $service->updateQuality();
         $serviceItems = $service->getItems();
         $this->assertEquals(0, $serviceItems[0]->quality);
+        $this->assertEquals(-1, $serviceItems[0]->sellIn);
     }
 }
