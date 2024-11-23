@@ -4,10 +4,12 @@ declare(strict_types=1);
 
 namespace App\Services\WolfService;
 
+use App\Repositories\ItemRepository\Contracts\ItemRepositoryInterface;
 use App\Services\WolfService\Strategies\StrategyFactory;
 
 final class WolfService
 {
+    private ItemRepositoryInterface $repository;
     /**
      * @param Item[] $items
      */
@@ -26,5 +28,15 @@ final class WolfService
     public function getItems(): array
     {
         return $this->items;
+    }
+
+    public function setRepository(ItemRepositoryInterface $repository): void
+    {
+        $this->repository = $repository;
+    }
+
+    public function saveItems(): void
+    {
+        $this->repository->updateOrCreate($this->items);
     }
 }
