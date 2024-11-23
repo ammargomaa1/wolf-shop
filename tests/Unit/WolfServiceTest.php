@@ -171,4 +171,28 @@ class WolfServiceTest extends TestCase
         $this->assertEquals(0, $serviceItems[0]->quality);
         $this->assertEquals(-1, $serviceItems[0]->sellIn);
     }
+
+    public function test_xiaomi_redmi_note_13_degrades_twice_as_fast(): void
+    {
+        $item = new Item('Xiaomi Redmi Note 13', 10, 50);
+
+        $service = new WolfService([$item]);
+
+        $service->updateQuality();
+        $serviceItems = $service->getItems();
+        $this->assertEquals(48, $serviceItems[0]->quality);
+        $this->assertEquals(9, $serviceItems[0]->sellIn);
+    }
+
+    public function test_xiaomi_redmi_note_13_qualtiy_is_never_less_than_zero(): void
+    {
+        $item = new Item('Xiaomi Redmi Note 13', 10, 0);
+
+        $service = new WolfService([$item]);
+
+        $service->updateQuality();
+        $serviceItems = $service->getItems();
+        $this->assertEquals(0, $serviceItems[0]->quality);
+        $this->assertEquals(9, $serviceItems[0]->sellIn);
+    }
 }
